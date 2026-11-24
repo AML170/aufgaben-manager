@@ -1,0 +1,180 @@
+:root {
+  --farbe-hintergrund: #f4f5f7;
+  --farbe-karte: #ffffff;
+  --farbe-text: #1f2937;
+  --farbe-text-schwach: #6b7280;
+  --farbe-primaer: #2563eb;
+  --farbe-primaer-dunkel: #1d4ed8;
+  --farbe-gefahr: #dc2626;
+  --farbe-rahmen: #e5e7eb;
+  --farbe-hoch: #ef4444;
+  --farbe-mittel: #f59e0b;
+  --farbe-niedrig: #10b981;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--farbe-hintergrund);
+  color: var(--farbe-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 560px;
+  background: var(--farbe-karte);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.app__header { margin-bottom: 1.25rem; }
+.app__header h1 { font-size: 1.5rem; }
+.app__subtitle { color: var(--farbe-text-schwach); font-size: 0.9rem; margin-top: 0.25rem; }
+
+.formular {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.formular__eingabe {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+.formular__auswahl {
+  padding: 0.6rem;
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  background: var(--farbe-karte);
+}
+
+.button {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.button--primaer { background: var(--farbe-primaer); color: #fff; }
+.button--primaer:hover { background: var(--farbe-primaer-dunkel); }
+.button--sekundaer { background: transparent; color: var(--farbe-gefahr); }
+.button--sekundaer:hover { background: #fee2e2; }
+
+.filter {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter__button {
+  border: 1px solid var(--farbe-rahmen);
+  background: var(--farbe-karte);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filter__button.ist-aktiv {
+  background: var(--farbe-primaer);
+  border-color: var(--farbe-primaer);
+  color: #fff;
+}
+
+.liste { list-style: none; }
+
+.aufgabe {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+
+.aufgabe__checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--farbe-primaer);
+}
+
+.aufgabe__text { flex: 1; overflow-wrap: anywhere; }
+.aufgabe.ist-erledigt .aufgabe__text {
+  text-decoration: line-through;
+  color: var(--farbe-text-schwach);
+}
+
+.aufgabe__prioritaet {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.aufgabe__prioritaet--hoch { background: var(--farbe-hoch); }
+.aufgabe__prioritaet--mittel { background: var(--farbe-mittel); }
+.aufgabe__prioritaet--niedrig { background: var(--farbe-niedrig); }
+
+.aufgabe__loeschen {
+  border: none;
+  background: transparent;
+  color: var(--farbe-text-schwach);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.aufgabe__loeschen:hover { color: var(--farbe-gefahr); }
+
+.leer-hinweis {
+  text-align: center;
+  color: var(--farbe-text-schwach);
+  padding: 1.5rem 0;
+  display: none;
+}
+
+.leer-hinweis.ist-sichtbar { display: block; }
+
+.app__fusszeile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--farbe-text-schwach);
+}
+
+/* Accessible contrast and small-screen layout. */
+.aufgabe__prioritaet--hoch { background: #b91c1c; }
+.aufgabe__prioritaet--mittel { background: #92400e; }
+.aufgabe__prioritaet--niedrig { background: #047857; }
+.formular__eingabe { min-width: 0; }
+.app { align-self: flex-start; }
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #2563eb; outline-offset: 3px;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+#speicher-status { color: #b91c1c; margin-top: 1rem; font-size: 0.875rem; }
+@media (max-width: 520px) {
+  body { padding: 1rem 0.65rem; }
+  .app { padding: 1rem; }
+  .formular { flex-wrap: wrap; }
+  .formular__eingabe { flex-basis: 100%; }
+  .formular__auswahl { flex: 1; }
+  .app__fusszeile { gap: 0.5rem; flex-wrap: wrap; }
+}

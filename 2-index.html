@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aufgaben-Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Aufgaben-Manager</h1>
+      <p class="app__subtitle">Behalte deine Aufgaben im Blick.</p>
+    </header>
+
+    <form id="aufgaben-formular" class="formular">
+      <input
+        type="text"
+        id="aufgaben-eingabe"
+        class="formular__eingabe"
+        placeholder="Neue Aufgabe eingeben..."
+        aria-label="Neue Aufgabe"
+        maxlength="200"
+        required
+      >
+      <select id="prioritaet-auswahl" class="formular__auswahl" aria-label="Priorität">
+        <option value="niedrig">Niedrig</option>
+        <option value="mittel" selected>Mittel</option>
+        <option value="hoch">Hoch</option>
+      </select>
+      <button type="submit" class="button button--primaer">Hinzufügen</button>
+    </form>
+
+    <div class="filter">
+      <button class="filter__button ist-aktiv" aria-pressed="true" data-filter="alle">Alle</button>
+      <button class="filter__button" aria-pressed="false" data-filter="offen">Offen</button>
+      <button class="filter__button" aria-pressed="false" data-filter="erledigt">Erledigt</button>
+    </div>
+
+    <ul id="aufgaben-liste" class="liste"></ul>
+
+    <p id="leer-hinweis" class="leer-hinweis">Keine Aufgaben vorhanden. Lege deine erste Aufgabe an!</p>
+
+    <p id="speicher-status" role="status"></p>
+    <footer class="app__fusszeile">
+      <span id="zaehler">0 offene Aufgaben</span>
+      <button id="erledigte-loeschen" class="button button--sekundaer">Erledigte löschen</button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
